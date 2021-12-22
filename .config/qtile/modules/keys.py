@@ -35,20 +35,10 @@ keys = [
 
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"],
-        "h",
-        lazy.layout.grow_left(),
-        desc="Grow window to the left"),
-    Key([mod, "control"],
-        "l",
-        lazy.layout.grow_right(),
-        desc="Grow window to the right"),
-    Key([mod, "control"],
-        "j",
-        lazy.layout.grow_down(),
-        desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, ctl], "h", lazy.layout.grow_left(),  lazy.layout.grow().when(layout=["monadtall", "monadwide"]), desc="Grow window to the left"), 
+    Key([mod, ctl], "l", lazy.layout.grow_right(), lazy.layout.grow().when(layout=["monadtall", "monadwide"]), desc="Grow window to the right"),
+    Key([mod, ctl], "j", lazy.layout.grow_down(),  lazy.layout.grow().when(layout=["monadtall", "monadwide"]), desc="Grow window down"),
+    Key([mod, ctl], "k", lazy.layout.grow_up(),    lazy.layout.grow().when(layout=["monadtall", "monadwide"]), desc="Grow window up"),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -68,6 +58,8 @@ keys = [
     Key([mod, "shift"], "space", lazy.layout.flip()),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
+    Key([mod, ctl], "b", lazy.hide_show_bar("all"), desc='Hide Bar'),
     Key([mod, "shift"],
         "r",
         lazy.spawncmd(),
